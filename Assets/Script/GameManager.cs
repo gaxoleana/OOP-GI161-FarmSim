@@ -1,31 +1,63 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    Chicken chicken = new Chicken("Dodo", 10, 10, 0);
-    Cow cow = new Cow("Timothy", 15, 15, 0);
+    public Chicken chicken;
+    public Cow cow;
+    public Pig pig;
+    public List<Animal> animals = new List<Animal>();
 
-    void Start()
+    private void Start()
     {
+        //---------- Add Chicken ----------//
+        chicken.Init("Chick fil A", 10, 10);
+        animals.Add(chicken);
+        //---------- Add Chicken ----------//
+
+        //---------- Add Cow ----------//
+        cow.Init("Polsih Cow", 20, 20);
+        animals.Add(cow);
+        //---------- Add Cow ----------//
+
+        //---------- Add Pig ----------//
+        pig.Init("John Pork", 15, 5);
+        animals.Add(pig);
+        //---------- Add Pig ----------//
+
         Debug.Log(">---------- Welcome to Farm Sim ----------<");
-        Debug.Log($">> {chicken.Name} and {cow.Name} are living in the farm <<");
+        Debug.Log($">> There are {animals.Count} animals living in the Happy Farm <<");
 
-        chicken.GetStatus();
+        foreach (Animal animal in animals)
+        {
+            animal.GetStatus();
+        }
 
-        chicken.MakeSound();
+        foreach (Animal animal in animals)
+        {
+            animal.MakeSound();
+            animal.Feed(5);
+        }
 
-        chicken.Feed();
-
-        chicken.Sleep();
-
-        Debug.Log(">--------------------<");
-
-        cow.GetStatus();
-
-        cow.MakeSound();
-
-        cow.Feed();
-
-        cow.Moo();
+        foreach (Animal animal in animals)
+        {
+            Debug.Log("");
+            if (animal is Chicken)
+            {
+                animal.Feed("Corn", 3);
+                chicken.Sleep();
+            }
+            else if (animal is Cow)
+            {
+                animal.Feed("Hey", 5);
+                cow.Moo();
+            }
+            else if (animal is Pig)
+            {
+                animal.Feed("Grain", 5);
+                pig.MakeSound();
+                animal.GetStatus();
+            }
+        }
     }
 }
