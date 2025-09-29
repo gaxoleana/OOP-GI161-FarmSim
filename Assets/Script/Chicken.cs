@@ -7,27 +7,15 @@ public class Chicken : Animal
     public int Egg
     {
         get { return egg; }
-        private set
-        {
-            if (value < 0)
-                egg = 0;
-            else if (value >= 100)
-                egg = 99;
-            else
-                egg = value;
-        }
+        private set { egg = Mathf.Clamp(value, 0, 100); }
     }
 
     //----------Methods----------//
-    public void Init(string newName, int newHunger, int newHappiness, int newEgg)
+    public override void Init(string newName)
     {
-        base.Init(newName, newHunger, newHappiness);
-        Egg = newEgg;
-    }
-
-    public override void MakeSound()
-    {
-        Debug.Log($"{Names} says Cluck!");
+        base.Init(newName);
+        PreferredFood = FoodType.Corn;
+        Egg = 0;
     }
 
     public void Sleep()
@@ -36,5 +24,34 @@ public class Chicken : Animal
         AdjustHappiness(+10);
         Debug.Log($"{Names} slept and feels a little hungry, but very happy!");
         GetStatus();
+    }
+
+    public override void MakeSound()
+    {
+        Debug.Log($"{Names} says Cluck!");
+    }
+
+    public override string Produce()
+    {
+        int produceEgg = 0;
+
+        if (Happiness >= 80)
+        {
+            produceEgg += 3;
+        }
+        else if (Happiness > 50)
+        {
+            produceEgg += 2;
+        }
+        else if (Happiness <= 50)
+        {
+            produceEgg += 0;
+        }
+
+        Egg += produceEgg;
+
+        string Produce = $"{Names} produced {produceEgg} eggs, Total Eggs: {Egg} eggs";
+        Debug.Log(Produce);
+        return Produce;
     }
 }

@@ -11,17 +11,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //---------- Add Chicken ----------//
-        chicken.Init("Chick fil A", 10, 10);
+        chicken.Init("Chicky");
         animals.Add(chicken);
         //---------- Add Chicken ----------//
 
         //---------- Add Cow ----------//
-        cow.Init("Polsih Cow", 20, 20);
+        cow.Init("Milky");
         animals.Add(cow);
         //---------- Add Cow ----------//
 
         //---------- Add Pig ----------//
-        pig.Init("John Pork", 15, 5);
+        pig.Init("John Pork");
         animals.Add(pig);
         //---------- Add Pig ----------//
 
@@ -39,25 +39,29 @@ public class GameManager : MonoBehaviour
             animal.Feed(5);
         }
 
-        foreach (Animal animal in animals)
-        {
-            Debug.Log("");
-            if (animal is Chicken)
-            {
-                animal.Feed("Corn", 3);
-                chicken.Sleep();
-            }
-            else if (animal is Cow)
-            {
-                animal.Feed("Hey", 5);
-                cow.Moo();
-            }
-            else if (animal is Pig)
-            {
-                animal.Feed("Grain", 5);
-                pig.MakeSound();
-                animal.GetStatus();
-            }
-        }
+        Debug.Log("");
+        chicken.Feed(10);
+        chicken.Feed(FoodType.Corn, 20);
+        chicken.Produce();
+        chicken.Feed(FoodType.RottenFood, 30);
+        chicken.Produce();
+        chicken.Feed(FoodType.RottenFood, 30);
+        chicken.Produce();
+        chicken.GetStatus();
+
+        Debug.Log("");
+        cow.Feed(10);
+        cow.Feed(FoodType.Hey, 20);
+        cow.Produce();
+        cow.Feed(FoodType.Hey, 30);
+        cow.Produce();
+        cow.Feed(FoodType.Hey, 30);
+        cow.Produce();
+        chicken.GetStatus();
+
+        Debug.Log("");
+        pig.Feed(50);
+        pig.Produce();
+        pig.GetStatus();
     }
 }

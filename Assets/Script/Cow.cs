@@ -7,22 +7,15 @@ public class Cow : Animal
     public float Milk
     {
         get { return milk; }
-        private set
-        {
-            if (value < 0)
-                milk = 0;
-            else if (value >= 100)
-                milk = 99;
-            else
-                milk = value;
-        }
+        private set { milk = Mathf.Clamp(value, 0, 100); }
     }
 
     //----------Methods----------//
-    public void Init(string newName, int newHunger, int newHappiness, int newMilk)
+    public override void Init(string newName)
     {
-        base.Init(newName, newHunger, newHappiness);
-        Milk = newMilk;
+        base.Init(newName);
+        PreferredFood = FoodType.Hey;
+        Milk = 0;
     }
 
     public override void MakeSound()
@@ -35,5 +28,21 @@ public class Cow : Animal
         AdjustHappiness(+10);
         Debug.Log($"{Names} gives a loud MooMoo!");
         GetStatus();
+    }
+
+    public override string Produce()
+    {
+        float produceMilk = 0f; 
+
+        if (Happiness > 70)
+        {
+            produceMilk += Happiness / 10.0f;
+        }
+
+        Milk += produceMilk;
+
+        string Produce = $"{Names} produced {produceMilk} units of Milk, Total Milk: {Milk} units.";
+        Debug.Log(Produce);
+        return Produce;
     }
 }
