@@ -20,13 +20,13 @@ public class Cow : Animal
 
     public override void MakeSound()
     {
-        Debug.Log($"{Names} says Moo!");
+        Debug.Log($"{Name} says Moo!");
     }
 
     public void Moo()
     {
         AdjustHappiness(+10);
-        Debug.Log($"{Names} gives a loud MooMoo!");
+        Debug.Log($"{Name} gives a loud MooMoo!");
         GetStatus();
     }
 
@@ -41,7 +41,7 @@ public class Cow : Animal
 
         Milk += produceMilk;
 
-        string Produce = $"{Names} produced {produceMilk} units of Milk, Total Milk: {Milk} units.";
+        string Produce = $"{Name} produced {produceMilk} units of Milk, Total Milk: {Milk} units.";
         Debug.Log(Produce);
         return Produce;
     }

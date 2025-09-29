@@ -20,7 +20,7 @@ public class Pig : Animal
 
     public override void MakeSound()
     {
-        Debug.Log($"{Names} says Hog!");
+        Debug.Log($"{Name} says Hog!");
     }
 
     public override string Produce()
@@ -34,7 +34,7 @@ public class Pig : Animal
 
         PorkBelly += producePorkBelly;
         
-        string Produce = $"{Names} produced {producePorkBelly} units of Pork Belly, Total Pork Belly: {PorkBelly} units.";
+        string Produce = $"{Name} produced {producePorkBelly} units of Pork Belly, Total Pork Belly: {PorkBelly} units.";
         Debug.Log(Produce);
         return Produce;
     }

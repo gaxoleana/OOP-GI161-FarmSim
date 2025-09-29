@@ -22,13 +22,13 @@ public class Chicken : Animal
     {
         AdjustHunger(+2);
         AdjustHappiness(+10);
-        Debug.Log($"{Names} slept and feels a little hungry, but very happy!");
+        Debug.Log($"{Name} slept and feels a little hungry, but very happy!");
         GetStatus();
     }
 
     public override void MakeSound()
     {
-        Debug.Log($"{Names} says Cluck!");
+        Debug.Log($"{Name} says Cluck!");
     }
 
     public override string Produce()
@@ -50,7 +50,7 @@ public class Chicken : Animal
 
         Egg += produceEgg;
 
-        string Produce = $"{Names} produced {produceEgg} eggs, Total Eggs: {Egg} eggs";
+        string Produce = $"{Name} produced {produceEgg} eggs, Total Eggs: {Egg} eggs";
         Debug.Log(Produce);
         return Produce;
     }
